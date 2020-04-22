@@ -1,0 +1,36 @@
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>
+      function getUrlVars() {
+          var vars = {};
+          var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
+              vars[key] = value;
+          });
+          return vars;
+      }
+      authorizedCallback = function () {
+        var redirect_to_url = getUrlVars()["redirect_to"];
+        if (redirect_to_url) {
+            window.location.replace = redirect_to_url + "?token=abc123dorayme";
+        }
+      }
+      window.onload = function () {
+        var redirect_to_url = getUrlVars()["redirect_to"];
+        if (redirect_to_url) {
+            document.getElementById("redirectme").href = redirect_to_url + "?token=abc123dorayme";
+        }
+      }
+    </script>
+  </head>
+<body>
+  <h1>Pretend Auth Site</h1>
+  <div>
+    <br>
+    <p>
+      Pretend the Auth is done. 
+      <a href="" id="redirectme">Redirect back to the App with the Token!</a><br>
+    </p>
+  </div>
+</body>
+</html>
